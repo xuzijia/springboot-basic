@@ -1,2 +1,5 @@
 server:
   port: 80
+spring:
+  application:
+    name: springboot-basic
