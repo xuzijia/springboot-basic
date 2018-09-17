@@ -1,0 +1,23 @@
+################################ 开发环境 ##############################
+server:
+  #prot
+  port: 8080
+spring:
+  application:
+    name: springboot-basic
+
+  #datadource
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://192.168.1.248:3306/springboot_basic?useUnicode=true&characterEncoding=utf8&useSSL=true
+  #redis
+  redis:
+    host: 192.168.1.248
+    password:
+    database: 0
+    port: 6379
+#开发模式下使用debug级别
+logging:
+  level:
+    com.simple.springbootbasic: debug
