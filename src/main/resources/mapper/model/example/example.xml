@@ -6,4 +6,8 @@
     <select id="selectAll" resultType="example">
 		select * from th_example
 	</select>
+
+	<delete id="delete" parameterType="int">
+		delete from th_example where id=#{id}
+	</delete>
 </mapper>

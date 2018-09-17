@@ -7,6 +7,7 @@ import com.simple.springbootbasic.model.example.mapper.ExampleMapper;
 import com.simple.springbootbasic.model.example.service.ExampleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
@@ -37,5 +38,11 @@ public class ExampleServiceImpl implements ExampleService {
             redisUtil.set(example,examples,5);
         }
         return examples;
+    }
+    @Transactional
+    public void delete(Integer id){
+        exampleMapper.delete(id);
+        //测试事务
+        int a=1/0;
     }
 }

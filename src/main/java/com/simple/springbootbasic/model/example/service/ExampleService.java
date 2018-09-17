@@ -12,4 +12,5 @@ import java.util.List;
  */
 public interface ExampleService {
     List<Example> selectAll();
+    void delete(Integer id);
 }

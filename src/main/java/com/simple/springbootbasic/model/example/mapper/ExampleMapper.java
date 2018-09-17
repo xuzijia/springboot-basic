@@ -12,4 +12,5 @@ import java.util.List;
  */
 public interface ExampleMapper {
     List<Example> selectAll();
+    void delete(Integer id);
 }
