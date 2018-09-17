@@ -9,4 +9,5 @@ import org.springframework.context.annotation.Configuration;
 @Data
 public class SimpleProperies {
     private String example;
+    private String error_page;
 }
