@@ -33,15 +33,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(RuntimeException.class)
     public Object runtimeExceptionHander(HttpServletRequest request, Exception e){
-        //如果是404异常 返回到404页面
-        if(e instanceof NoHandlerFoundException){
-            //web请求
-            ModelAndView modelAndView=new ModelAndView();
-            modelAndView.addObject("message",request.getRequestURL());
-            modelAndView.addObject("code",ResponseCode.NOT_FOUND.getCode());
-            modelAndView.setViewName(simpleProperies.getError_page());
-            return modelAndView;
-        }
+        e.printStackTrace();
         if (isAjax(request)){
             //ajax请求
             return ResultJsonUtils.error(ResponseCode.SERVERERROR.getCode(),e.getMessage());

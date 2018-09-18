@@ -1,15 +1,15 @@
 package com.simple.springbootbasic.model.example.service.impl;
 
-import com.simple.springbootbasic.basic.configuration.SimpleProperies;
-import com.simple.springbootbasic.basic.utils.RedisUtil;
+import com.github.pagehelper.PageHelper;
+import com.simple.springbootbasic.basic.base.impl.BaseServiceImpl;
 import com.simple.springbootbasic.model.example.entity.Example;
 import com.simple.springbootbasic.model.example.mapper.ExampleMapper;
 import com.simple.springbootbasic.model.example.service.ExampleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
+import java.util.List;
+
 
 /**
  * @Description
@@ -18,31 +18,29 @@ import java.util.*;
  * @Version 1.0
  */
 @Service
-public class ExampleServiceImpl implements ExampleService {
+public class ExampleServiceImpl extends BaseServiceImpl<Example> implements ExampleService {
+
     @Autowired
     private ExampleMapper exampleMapper;
-
-    @Autowired
-    private RedisUtil redisUtil;
-
-    @Autowired
-    private SimpleProperies simpleProperies;
-
-    public List<Example> selectAll(){
-        List<Example> examples = null;
-        String example = simpleProperies.getExample();
-        if(redisUtil.hasKey(example)){
-            examples= (List<Example>) redisUtil.get(example);
-        }else{
-            examples=exampleMapper.selectAll();
-            redisUtil.set(example,examples,5);
-        }
-        return examples;
+    @Override
+    public void deleteExample(Integer id) {
+        Example example = exampleMapper.selectByPrimaryKey(id);
+        exampleMapper.delete(example);
     }
-    @Transactional
-    public void delete(Integer id){
-        exampleMapper.delete(id);
-        //测试事务
-        int a=1/0;
+
+    /**
+     * 开启分页
+     *
+     * @param page
+     * @param size
+     * @return
+     */
+    @Override
+    public List<Example> pageList(Integer page, Integer size) {
+        //分页核心代码
+        PageHelper.startPage(page, size);
+        return exampleMapper.selectAll();
     }
+
+
 }

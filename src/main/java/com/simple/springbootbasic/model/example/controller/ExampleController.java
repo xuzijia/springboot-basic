@@ -1,5 +1,6 @@
 package com.simple.springbootbasic.model.example.controller;
 
+import com.simple.springbootbasic.basic.result.PageQuery;
 import com.simple.springbootbasic.basic.result.ResponseCode;
 import com.simple.springbootbasic.basic.result.ResultJsonData;
 import com.simple.springbootbasic.basic.result.ResultJsonUtils;
@@ -11,9 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.HashMap;
+import javax.xml.namespace.QName;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @Description
@@ -35,8 +35,8 @@ public class ExampleController {
     }
 
     @RequestMapping("/exampleList.do")
-    public ResultJsonData list(){
-        List<Example> examples = exampleService.selectAll();
+    public ResultJsonData list(PageQuery pageQuery){
+        List<Example> examples = exampleService.pageList(pageQuery.getPageNum(), pageQuery.getPageSize());
         return new ResultJsonUtils<Example>().success(examples);
     }
 
@@ -45,7 +45,27 @@ public class ExampleController {
         if(id==null){
             return ResultJsonUtils.error(ResponseCode.MISSINGPARAMETERS.getCode(),ResponseCode.MISSINGPARAMETERS.getMessage());
         }
-        exampleService.delete(id);
+        exampleService.deleteExample(id);
         return ResultJsonUtils.success("删除成功");
     }
+
+    @RequestMapping("/insert.do")
+    public ResultJsonData insert(){
+        Example e=new Example();
+        e.setUsername("insert");
+        e.setNote("desc");
+        exampleService.save(e);
+        return ResultJsonUtils.success();
+    }
+    @RequestMapping("/batchInsert.do")
+    public ResultJsonData batchInsert(){
+        for (int i=0;i<10;i++){
+            Example e=new Example();
+            e.setUsername("insert");
+            e.setNote("desc");
+            exampleService.save(e);
+        }
+        return ResultJsonUtils.success();
+    }
+
 }

@@ -16,7 +16,11 @@ public class ResultJsonData<T> {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private T object;
     @JsonInclude(JsonInclude.Include.NON_NULL)
+    private Integer count;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private List<T> dataList;
+
+
 
     public ResultJsonData(Integer code, String message) {
         this.code = code;
@@ -33,5 +37,6 @@ public class ResultJsonData<T> {
         this.code = code;
         this.message = message;
         this.dataList = dataList;
+        this.count=dataList.size();
     }
 }

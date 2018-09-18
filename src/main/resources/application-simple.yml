@@ -2,3 +2,5 @@
 simple:
   example: example
   error_page: /500
+  page:
+    size: 10

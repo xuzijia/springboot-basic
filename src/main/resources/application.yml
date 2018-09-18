@@ -51,7 +51,7 @@ spring:
         # 是否能够重置数据
         reset-enable: false
         # 需要账号密码才能访问控制台
-        login-username: xuzijia
+        login-username: simple
         login-password: 123456
         # IP白名单
         # allow: 127.0.0.1
