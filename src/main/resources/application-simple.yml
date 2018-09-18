@@ -4,3 +4,5 @@ simple:
   error_page: /500
   page:
     size: 10
+  # 是否开启 AOP 日志，默认开启
+  openAopLog: true

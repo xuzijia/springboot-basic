@@ -1,7 +1,6 @@
 package com.simple.springbootbasic.basic.result;
 
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.io.Serializable;
 
@@ -13,8 +12,6 @@ import java.io.Serializable;
  */
 @Data
 public class PageQuery implements Serializable {
-    @Value("${simple.page.size}")
     private int pageSize=10;
-    @Value("1")
-    private int pageNum=2;
+    private int pageNum=1;
 }

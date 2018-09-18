@@ -10,4 +10,5 @@ import org.springframework.context.annotation.Configuration;
 public class SimpleProperies {
     private String example;
     private String error_page;
+    private Boolean openAopLog;
 }

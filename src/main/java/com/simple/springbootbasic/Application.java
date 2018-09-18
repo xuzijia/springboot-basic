@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @SpringBootApplication
 @EnableTransactionManagement //开启事务处理
-@MapperScan("com.simple.springbootbasic.*.*.mapper")
+@MapperScan("com.simple.springbootbasic.**.mapper")
 public class Application {
 
     public static void main(String[] args) {

@@ -63,6 +63,7 @@ spring:
           log-slow-sql: true
 
   #redis其他配置
+
   redis:
     jedis:
       pool:
@@ -76,7 +77,6 @@ spring:
         max-wait: 10000
     # 连接超时时间（毫秒
     timeout: 5000
-
 
 #mybatis配置
 mybatis:

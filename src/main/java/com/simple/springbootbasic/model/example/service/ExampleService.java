@@ -19,5 +19,5 @@ public interface ExampleService extends BaseService<Example> {
      * @param size
      * @return
      */
-    List<Example> pageList(Integer page,Integer size);
+    List<Example> pageList(Integer page,Integer size) throws Exception;
 }

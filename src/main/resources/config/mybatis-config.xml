@@ -7,4 +7,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<!--&lt;!&ndash;解决插入null的时候报错问题&ndash;&gt;-->
 		<!--<setting name="jdbcTypeForNull" value="NULL"/>-->
 	<!--</settings>-->
+	<!--启用二级缓存-->
+	<settings>
+		<setting name="cacheEnabled" value="false" />
+	</settings>
 </configuration>

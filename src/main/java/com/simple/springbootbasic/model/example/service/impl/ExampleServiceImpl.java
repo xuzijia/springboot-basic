@@ -2,6 +2,7 @@ package com.simple.springbootbasic.model.example.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.simple.springbootbasic.basic.base.impl.BaseServiceImpl;
+import com.simple.springbootbasic.basic.utils.RedisUtil;
 import com.simple.springbootbasic.model.example.entity.Example;
 import com.simple.springbootbasic.model.example.mapper.ExampleMapper;
 import com.simple.springbootbasic.model.example.service.ExampleService;
@@ -22,10 +23,13 @@ public class ExampleServiceImpl extends BaseServiceImpl<Example> implements Exam
 
     @Autowired
     private ExampleMapper exampleMapper;
+    @Autowired
+    private RedisUtil redisUtil;
+
+
     @Override
     public void deleteExample(Integer id) {
-        Example example = exampleMapper.selectByPrimaryKey(id);
-        exampleMapper.delete(example);
+        exampleMapper.deleteByPrimaryKey(id);
     }
 
     /**
@@ -36,10 +40,12 @@ public class ExampleServiceImpl extends BaseServiceImpl<Example> implements Exam
      * @return
      */
     @Override
-    public List<Example> pageList(Integer page, Integer size) {
+    public List<Example> pageList(Integer page, Integer size) throws Exception {
         //分页核心代码
         PageHelper.startPage(page, size);
-        return exampleMapper.selectAll();
+        List<Example> examples = exampleMapper.selectAll();
+        //redisUtil.set("list",examples,3600);
+        return examples;
     }
 
 

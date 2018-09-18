@@ -1,5 +1,6 @@
 package com.simple.springbootbasic.model.example.controller;
 
+import com.simple.springbootbasic.basic.annotation.Log;
 import com.simple.springbootbasic.basic.result.PageQuery;
 import com.simple.springbootbasic.basic.result.ResponseCode;
 import com.simple.springbootbasic.basic.result.ResultJsonData;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.xml.namespace.QName;
 import java.util.List;
 
 /**
@@ -35,13 +35,15 @@ public class ExampleController {
     }
 
     @RequestMapping("/exampleList.do")
-    public ResultJsonData list(PageQuery pageQuery){
+    @Log(value = "查询测试接口列表")
+    public ResultJsonData list(PageQuery pageQuery) throws Exception {
         List<Example> examples = exampleService.pageList(pageQuery.getPageNum(), pageQuery.getPageSize());
         return new ResultJsonUtils<Example>().success(examples);
     }
 
+    @Log(value = "根据测试id删除测试接口")
     @RequestMapping("/delete/{id}")
-    public ResultJsonData list(@PathVariable("id") Integer id){
+    public ResultJsonData delete(@PathVariable("id") Integer id){
         if(id==null){
             return ResultJsonUtils.error(ResponseCode.MISSINGPARAMETERS.getCode(),ResponseCode.MISSINGPARAMETERS.getMessage());
         }
@@ -49,6 +51,7 @@ public class ExampleController {
         return ResultJsonUtils.success("删除成功");
     }
 
+    @Log(value = "插入测试接口")
     @RequestMapping("/insert.do")
     public ResultJsonData insert(){
         Example e=new Example();

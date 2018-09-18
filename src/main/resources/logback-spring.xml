@@ -2,16 +2,17 @@
 <!DOCTYPE xml>
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
 
-    <contextName>sms</contextName>
+    <contextName>spring-boot</contextName>
 
     <property name="log.path" value="log" />
     <property name="log.maxHistory" value="15" />
-    <property name="log.pattern" value="%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n" />
+    <property name="log.pattern.console" value="%d{HH:mm:ss} %contextName [%thread] %-5level %logger{36} - %msg%n" />
+    <property name="log.pattern.file" value="%d{HH:mm:ss} %contextName [%thread] %-5level %logger{36} - %msg%n %n" />
 
     <!--输出到控制台-->
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>${log.pattern}</pattern>
+            <pattern>${log.pattern.console}</pattern>
         </encoder>
     </appender>
 
@@ -22,7 +23,7 @@
             <MaxHistory>${log.maxHistory}</MaxHistory>
         </rollingPolicy>
         <encoder>
-            <pattern>${log.pattern}</pattern>
+            <pattern>${log.pattern.console}</pattern>
         </encoder>
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <level>INFO</level>
@@ -36,7 +37,7 @@
             <fileNamePattern>${log.path}/error/error.%d{yyyy-MM-dd}.log</fileNamePattern>
         </rollingPolicy>
         <encoder>
-            <pattern>${log.pattern}</pattern>
+            <pattern>${log.pattern.file}</pattern>
         </encoder>
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <level>ERROR</level>

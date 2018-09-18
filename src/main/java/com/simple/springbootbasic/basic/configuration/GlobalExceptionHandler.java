@@ -1,14 +1,13 @@
 package com.simple.springbootbasic.basic.configuration;
 
 import com.simple.springbootbasic.basic.result.ResponseCode;
-import com.simple.springbootbasic.basic.result.ResultJsonData;
 import com.simple.springbootbasic.basic.result.ResultJsonUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.NoHandlerFoundException;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -20,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @ControllerAdvice
 @ResponseBody
+@Slf4j
 public class GlobalExceptionHandler {
 
     @Autowired
@@ -31,9 +31,9 @@ public class GlobalExceptionHandler {
      * @param e
      * @return
      */
-    @ExceptionHandler(RuntimeException.class)
+    @ExceptionHandler(Exception.class)
     public Object runtimeExceptionHander(HttpServletRequest request, Exception e){
-        e.printStackTrace();
+        log.error(e.getMessage());
         if (isAjax(request)){
             //ajax请求
             return ResultJsonUtils.error(ResponseCode.SERVERERROR.getCode(),e.getMessage());
