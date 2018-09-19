@@ -1,6 +1,5 @@
 package com.simple.springbootbasic.model.example.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
@@ -18,7 +17,7 @@ import java.util.Date;
  * @Version 1.0
  */
 @Data
-@Table(name="th_example")
+@Table(name="t_example")
 public class Example implements Serializable {
 
     @JsonIgnore
@@ -26,7 +25,6 @@ public class Example implements Serializable {
     private Integer id;
     @Column(name="name")
     private String username;
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
     private Date birthday;
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private String note;

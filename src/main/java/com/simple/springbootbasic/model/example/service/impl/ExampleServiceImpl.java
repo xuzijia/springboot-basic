@@ -2,7 +2,7 @@ package com.simple.springbootbasic.model.example.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.simple.springbootbasic.basic.base.impl.BaseServiceImpl;
-import com.simple.springbootbasic.basic.utils.RedisUtil;
+import com.simple.springbootbasic.utils.RedisUtil;
 import com.simple.springbootbasic.model.example.entity.Example;
 import com.simple.springbootbasic.model.example.mapper.ExampleMapper;
 import com.simple.springbootbasic.model.example.service.ExampleService;

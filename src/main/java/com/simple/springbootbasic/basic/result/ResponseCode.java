@@ -10,12 +10,14 @@ import lombok.Getter;
  */
 @Getter
 public enum ResponseCode {
-    SUCCESS(200,"Success"),
+    SUCCESS(200,"ok"),
     NOT_FOUND(404,"Not Found"),
     UNAUTHORIZED(401,"Unauthorized"),
     FORBIDDEN(403,"Forbidden"),
     SERVERERROR(500,"Server Error"),
-    MISSINGPARAMETERS(-1,"Missing Parameters")
+    MISSINGPARAMETERS(-1,"Missing Parameters"),
+    LOINGERROR(-2,"Login Error"),
+    UNAUTHENTICATION(-3,"Unauthentication")
     ;
     private Integer code;
     private String message;

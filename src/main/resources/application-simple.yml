@@ -1,8 +1,33 @@
 ################################ 程序全局配置文件 ##############################
 simple:
-  example: example
-  error_page: /500
-  page:
-    size: 10
+  #500页面
+  errorPage: /500
+  #404页面
+  notFoundPage: /400
+  #403页面
+  UnauthorizedPage: /403
   # 是否开启 AOP 日志，默认开启
   openAopLog: true
+  # 密码salt值
+  salt: simple
+  #配置json时间格式
+  timeFormat: yyyy-MM-dd
+
+
+  shiro:
+    # shiro redis缓存时长，默认1800秒
+    expireIn: 1800
+    # session 超时时间，默认1800000毫秒
+    sessionTimeout: 1800000
+    # rememberMe cookie有效时长，默认86400秒，即一天
+    cookieTimeout: 86400
+    # 免认证的路径配置，如静态资源，druid监控页面，注册页面，验证码请求等
+    anonUrl: /css/**,/js/**,/fonts/**,/img/**,/druid/**,/**/*.json,/login.do
+    # 登录 url
+    loginUrl: /login.view
+    # 登录成功后跳转的 url
+    successUrl: /index.do
+    # 登出 url
+    logoutUrl: /logout.do
+    # 未授权跳转 url
+    unauthorizedUrl: /403

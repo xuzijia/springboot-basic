@@ -3,7 +3,7 @@ package com.simple.springbootbasic.basic.aspect;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.simple.springbootbasic.basic.annotation.Log;
-import com.simple.springbootbasic.basic.configuration.SimpleProperies;
+import com.simple.springbootbasic.basic.properties.SimpleProperies;
 import com.simple.springbootbasic.basic.constant.GlobalConstant;
 import com.simple.springbootbasic.system.entity.SystemLog;
 import com.simple.springbootbasic.system.service.SystemLogService;

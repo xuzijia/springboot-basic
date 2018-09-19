@@ -1,9 +1,10 @@
 package com.simple.springbootbasic.system.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -12,6 +13,7 @@ import java.util.Date;
 public class SystemLog implements Serializable {
 
 	@Id
+	@Column(name="log_id")
 	private Long id;
 
 	private String username;
@@ -26,7 +28,6 @@ public class SystemLog implements Serializable {
 
 	private String location;
 
-	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
 	private Date createTime;
 
 	private String description;

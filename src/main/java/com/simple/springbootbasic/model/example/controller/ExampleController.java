@@ -7,11 +7,11 @@ import com.simple.springbootbasic.basic.result.ResultJsonData;
 import com.simple.springbootbasic.basic.result.ResultJsonUtils;
 import com.simple.springbootbasic.model.example.entity.Example;
 import com.simple.springbootbasic.model.example.service.ExampleService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -27,15 +27,8 @@ public class ExampleController {
     @Autowired
     private ExampleService exampleService;
 
-    @RequestMapping("/index")
-    public ModelAndView index(ModelAndView modelAndView){
-        modelAndView.setViewName("/index");
-        modelAndView.addObject("message","FREEMARKER");
-        return modelAndView;
-    }
-
-    @RequestMapping("/exampleList.do")
-    @Log(value = "查询测试接口列表")
+    @RequestMapping("/exampleList.json")
+    //@Log(value = "查询测试接口列表")
     public ResultJsonData list(PageQuery pageQuery) throws Exception {
         List<Example> examples = exampleService.pageList(pageQuery.getPageNum(), pageQuery.getPageSize());
         return new ResultJsonUtils<Example>().success(examples);
@@ -43,6 +36,7 @@ public class ExampleController {
 
     @Log(value = "根据测试id删除测试接口")
     @RequestMapping("/delete/{id}")
+    @RequiresPermissions("example:delete")
     public ResultJsonData delete(@PathVariable("id") Integer id){
         if(id==null){
             return ResultJsonUtils.error(ResponseCode.MISSINGPARAMETERS.getCode(),ResponseCode.MISSINGPARAMETERS.getMessage());

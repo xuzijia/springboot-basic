@@ -6,6 +6,7 @@ import com.simple.springbootbasic.basic.result.ResultJsonData;
 import com.simple.springbootbasic.basic.result.ResultJsonUtils;
 import com.simple.springbootbasic.system.entity.SystemLog;
 import com.simple.springbootbasic.system.service.SystemLogService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,6 +32,7 @@ public class SystemLogController {
      */
     @Log(value = "查询日志列表")
     @RequestMapping("list.do")
+    @RequiresPermissions("log:find")
     public ResultJsonData list(PageQuery pageQuery){
         List<SystemLog> systemLogs = systemLogService.pageList(pageQuery.getPageNum(), pageQuery.getPageSize());
         return new ResultJsonUtils<SystemLog>().success(systemLogs);

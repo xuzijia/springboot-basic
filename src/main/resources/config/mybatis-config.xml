@@ -9,6 +9,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<!--</settings>-->
 	<!--启用二级缓存-->
 	<settings>
-		<setting name="cacheEnabled" value="false" />
+		<setting name="cacheEnabled" value="true" />
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
 	</settings>
 </configuration>

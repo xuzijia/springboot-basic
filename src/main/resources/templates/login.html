@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>登陆页面</title>
+    <script src="js/jquery.min.js"></script>
+</head>
+<body>
+<div class="login">
+    <form action="" method="post">
+        username: <input type="text" name="username"><br>
+        password: <input type="text" name="password"><br>
+        <input type="checkbox" name="rememberMe" value="1"> rememberMe<br>
+        <input type="button" id="button" value="login"><br>
+    </form>
+</div>
+</body>
+<script>
+    $(function(){
+        $("#button").click(function(){
+            var flag=false;
+            if($("input[name='rememberMe']:checked").val()){
+                flag=true;
+            }
+            var data={"username":$("input[name='username']").val(),"password":$("input[name='password']").val(),"rememberMe":flag};
+            $.ajax({
+                url:"/login.do?",
+                method:"post",
+                dataType:"json",
+                data:data,
+                success:function(data){
+                    if(data.code==200){
+                        window.location.href="/index.do";
+                    }else{
+                        alert(data.message);
+                    }
+                },
+                error:function(){
+                    alert("系统错误");
+                }
+            });
+        });
+    })
+
+</script>
+</html>

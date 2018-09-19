@@ -6,19 +6,12 @@
 </head>
 <body>
 <div class="message">
-    <h1 style="color: green;text-align: center">${message!}</h1>
+    <h1 style="text-align: center">welcome <span style="color:lightgreen">${user.username!}</span> to index.</h1>
+    <h1><a href="/logout.do">退出</a></h1>
 </div>
 </body>
 
 <script>
-    var id=3;
-    $.ajax({
-        url:"/example/delete/"+id,
-        dataType:"json",
-        success:function(data){
-            console.log(data);
-        }
-    })
 </script>
 
 
