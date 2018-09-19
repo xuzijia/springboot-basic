@@ -39,10 +39,10 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
     @Override
     public void addMenu(RoleMenu roleMenu)throws Exception {
         roleMenuMapper.insert(roleMenu);
-        ////刷新用户权限
-        //RealmSecurityManager rsm = (RealmSecurityManager) SecurityUtils.getSecurityManager();
-        //ShiroRealm authRealm = (ShiroRealm)rsm.getRealms().iterator().next();
-        //authRealm.clearAuthz();
+        //刷新用户权限
+        RealmSecurityManager rsm = (RealmSecurityManager) SecurityUtils.getSecurityManager();
+        ShiroRealm authRealm = (ShiroRealm)rsm.getRealms().iterator().next();
+        authRealm.clearAuthorizationInfoCache();
     }
 
     /**
@@ -52,6 +52,10 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
     @Override
     public void deleteMenu(RoleMenu roleMenu) {
         roleMenuMapper.delete(roleMenu);
+        //刷新用户权限
+        RealmSecurityManager rsm = (RealmSecurityManager) SecurityUtils.getSecurityManager();
+        ShiroRealm authRealm = (ShiroRealm)rsm.getRealms().iterator().next();
+        authRealm.clearAuthorizationInfoCache();
 
     }
 }

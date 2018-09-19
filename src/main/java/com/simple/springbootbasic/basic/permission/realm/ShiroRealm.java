@@ -10,6 +10,7 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
+import org.apache.shiro.cache.Cache;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import static com.simple.springbootbasic.utils.RandomUtils.getUUID;
 
 /**
  * 自定义实现 ShiroRealm，包含认证和授权两大模块
@@ -78,14 +81,24 @@ public class ShiroRealm extends AuthorizingRealm {
 		if (!password.equals(user.getPassword())) {
 			throw new IncorrectCredentialsException("密码错误！");
 		}
-		return new SimpleAuthenticationInfo(user, password, getName());
+		return new SimpleAuthenticationInfo(user, password,getUUID());
 	}
 
 	/**
-	 * 刷新权限
+	 * 刷新指定用户权限权限
 	 */
 	public void clearAuthz(){
 		this.clearCachedAuthorizationInfo(SecurityUtils.getSubject().getPrincipals());
 	}
+
+    /**
+     * 清除所有用户的缓存
+     */
+    public void clearAuthorizationInfoCache() {
+        Cache<Object, AuthorizationInfo> cache = getAuthorizationCache();
+        if(cache!=null) {
+            cache.clear();
+        }
+    }
 
 }
