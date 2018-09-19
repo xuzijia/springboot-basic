@@ -3,13 +3,11 @@ package com.simple.springbootbasic.basic.aspect;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.simple.springbootbasic.basic.annotation.Log;
-import com.simple.springbootbasic.basic.properties.SimpleProperies;
 import com.simple.springbootbasic.basic.constant.GlobalConstant;
+import com.simple.springbootbasic.basic.properties.SimpleProperies;
 import com.simple.springbootbasic.system.entity.SystemLog;
 import com.simple.springbootbasic.system.service.SystemLogService;
-import com.simple.springbootbasic.utils.AddressUtils;
 import com.simple.springbootbasic.utils.HttpContextUtils;
-import com.simple.springbootbasic.utils.IPUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -48,7 +46,7 @@ public class LogAspect {
     }
 
     @Around("pointcut()")
-    public Object around(ProceedingJoinPoint point) throws Exception {
+    public Object around(ProceedingJoinPoint point) throws Throwable {
         Object result = null;
         long beginTime = System.currentTimeMillis();
         String errorMessage="";//执行错误消息
@@ -74,7 +72,7 @@ public class LogAspect {
             saveLog(point, log);
         }
         if(ex!=null){
-            throw new Exception(ex);
+            throw ex;
         }
         return result;
     }
@@ -115,9 +113,9 @@ public class LogAspect {
         // 获取request
         HttpServletRequest request = HttpContextUtils.getHttpServletRequest();
         // 设置IP地址
-        log.setIp(IPUtils.getIpAddr(request));
+       // log.setIp(IPUtils.getIpAddr(request));
         log.setCreateTime(new Date());
-        log.setLocation(AddressUtils.getRealAddressByIP(log.getIp(), mapper));
+       // log.setLocation(AddressUtils.getRealAddressByIP(log.getIp(), mapper));
         //设置请求方法类型
         log.setMethod_type(request.getMethod());
         //设置请求url

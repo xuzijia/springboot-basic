@@ -81,4 +81,11 @@ public class ShiroRealm extends AuthorizingRealm {
 		return new SimpleAuthenticationInfo(user, password, getName());
 	}
 
+	/**
+	 * 刷新权限
+	 */
+	public void clearAuthz(){
+		this.clearCachedAuthorizationInfo(SecurityUtils.getSubject().getPrincipals());
+	}
+
 }

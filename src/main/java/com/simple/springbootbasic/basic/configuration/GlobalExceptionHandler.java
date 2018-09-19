@@ -70,10 +70,10 @@ public class GlobalExceptionHandler {
             log.error(e.getMessage());
             if (isAjax(request)) {
                 //ajax请求
-                return ResultJsonUtils.error(code, e.getMessage());
+                return ResultJsonUtils.error(code, "系统错误");
             }
 
-            modelAndView.addObject("message", e.getMessage());
+            modelAndView.addObject("message", "系统错误");
             modelAndView.addObject("code", ResponseCode.SERVERERROR.getCode());
             modelAndView.setViewName(simpleProperies.getErrorPage());
             return modelAndView;

@@ -40,6 +40,7 @@ public class LoginController extends BaseController {
      */
     @RequestMapping("/login.do")
     @ResponseBody
+    @Log("登陆系统")
     public Object login(User user, Boolean rememberMe) {
         //密码加密
         String md5 = new SimpleHash("md5", user.getPassword() + simpleProperies.getSalt()).toString();
