@@ -3,7 +3,7 @@ simple:
   #500页面
   errorPage: /500
   #404页面
-  notFoundPage: /400
+  notFoundPage: /404
   #403页面
   UnauthorizedPage: /403
   # 是否开启 AOP 日志，默认开启
@@ -22,7 +22,7 @@ simple:
     # rememberMe cookie有效时长，默认86400秒，即一天
     cookieTimeout: 86400
     # 免认证的路径配置，如静态资源，druid监控页面，注册页面，验证码请求等
-    anonUrl: /css/**,/js/**,/fonts/**,/img/**,/druid/**,/**/*.json,/login.do
+    anonUrl: /css/**,/js/**,/fonts/**,/img/**,/druid/**,/**/*.json,/login.do,/webSocket/*
     # 登录 url
     loginUrl: /login.view
     # 登录成功后跳转的 url

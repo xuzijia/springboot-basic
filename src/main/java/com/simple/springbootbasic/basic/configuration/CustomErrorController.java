@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
  * @Version 1.0
  */
 @Controller
-public class MainsiteErrorController implements ErrorController {
+public class CustomErrorController implements ErrorController {
     @Autowired
     private SimpleProperies simpleProperies;
 
@@ -24,6 +24,7 @@ public class MainsiteErrorController implements ErrorController {
         //获取statusCode:401,404,500
         Integer statusCode = (Integer) request.getAttribute("javax.servlet.error.status_code");
         if(statusCode == 404){
+            request.setAttribute("javax.servlet.error.status_code",200);
             return simpleProperies.getNotFoundPage();
         }
         return "/error";

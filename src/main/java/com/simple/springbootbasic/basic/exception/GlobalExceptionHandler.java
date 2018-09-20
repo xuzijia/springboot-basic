@@ -1,4 +1,4 @@
-package com.simple.springbootbasic.basic.configuration;
+package com.simple.springbootbasic.basic.exception;
 
 import com.simple.springbootbasic.basic.properties.SimpleProperies;
 import com.simple.springbootbasic.basic.result.ResponseCode;

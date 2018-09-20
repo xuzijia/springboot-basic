@@ -17,7 +17,8 @@ public enum ResponseCode {
     SERVERERROR(500,"Server Error"),
     MISSINGPARAMETERS(-1,"Missing Parameters"),
     LOINGERROR(-2,"Login Error"),
-    UNAUTHENTICATION(-3,"Unauthentication")
+    UNAUTHENTICATION(-3,"Unauthentication"),
+    SOCKETERROR(-4,"Websocket Exception"),
     ;
     private Integer code;
     private String message;
