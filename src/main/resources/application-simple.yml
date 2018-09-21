@@ -12,6 +12,8 @@ simple:
   salt: simple
   #配置json时间格式
   timeFormat: yyyy-MM-dd
+  #随机id
+  uuid: ${random.uuid}
 
 
   shiro:
