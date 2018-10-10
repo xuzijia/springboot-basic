@@ -2,6 +2,7 @@ package com.simple.springbootbasic.system.controller;
 
 import com.simple.springbootbasic.basic.annotation.Log;
 import com.simple.springbootbasic.basic.result.PageQuery;
+import com.simple.springbootbasic.basic.result.ResponseCode;
 import com.simple.springbootbasic.basic.result.ResultJsonData;
 import com.simple.springbootbasic.basic.result.ResultJsonUtils;
 import com.simple.springbootbasic.system.entity.SystemLog;
@@ -36,5 +37,22 @@ public class SystemLogController {
     public ResultJsonData list(PageQuery pageQuery){
         List<SystemLog> systemLogs = systemLogService.pageList(pageQuery.getPageNum(), pageQuery.getPageSize());
         return new ResultJsonUtils<SystemLog>().success(systemLogs);
+    }
+
+    /**
+     * 删除日志
+     */
+    @Log(value="删除日志")
+    @RequestMapping("delete.do")
+    @RequiresPermissions("log:delete")
+    public ResultJsonData delete(Integer id){
+        //判断id
+        if(id==null){
+            return ResultJsonUtils.error(ResponseCode.NOT_FOUND_PARAMS.getCode(),ResponseCode.NOT_FOUND_PARAMS.getMessage());
+        }
+        //执行删除
+        systemLogService.delete(id);
+
+        return ResultJsonUtils.success("删除成功");
     }
 }

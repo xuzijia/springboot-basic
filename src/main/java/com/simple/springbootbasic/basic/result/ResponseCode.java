@@ -12,6 +12,7 @@ import lombok.Getter;
 public enum ResponseCode {
     SUCCESS(200,"ok"),
     NOT_FOUND(404,"Not Found"),
+    NOT_FOUND_PARAMS(400,"Not Found Params"),
     UNAUTHORIZED(401,"Unauthorized"),
     FORBIDDEN(403,"Forbidden"),
     SERVERERROR(500,"Server Error"),
