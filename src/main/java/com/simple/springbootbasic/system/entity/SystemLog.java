@@ -42,7 +42,4 @@ public class SystemLog implements Serializable {
 
 	private String errorMessage;
 
-
-	
-
 }
